@@ -1,6 +1,6 @@
 // import { StatusBar } from 'expo-status-bar'
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Alert } from 'react-native'
 import { Navbar } from './src/components/Navbar'
 import { MainScreen } from './src/screens/MainScreen'
 import { TodoScreen } from './src/screens/TodoScreen'
@@ -8,8 +8,8 @@ import { TodoScreen } from './src/screens/TodoScreen'
 export default function App() {
   const [todoId, setTodoId] = useState('2')
   const [todos, setTodos] = useState([
-    {id: '1', title: 'Выучить React Native'},
-    {id: '2', title: 'Написать приложение'}
+    { id: '1', title: 'Выучить React Native' },
+    { id: '2', title: 'Написать приложение' },
   ])
 
   const addTodo = (title) => {
@@ -23,7 +23,23 @@ export default function App() {
   }
 
   const removeTodo = (id) => {
-    setTodos((prev) => prev.filter((todo) => todo.id !== id))
+    const todo = todos.find(t => t.id === id)
+    Alert.alert(
+      'Удаление элемента',
+      `Вы уверены что хотите удалить "${todo.title}"?`,
+      [
+        {
+          text: 'Отмена',
+          style: 'cancel'
+        },
+        { text: 'Удалить', onPress: () => {
+          setTodoId(null)
+          setTodos((prev) => prev.filter((todo) => todo.id !== id))
+        } }
+      ],
+      { cancelable: false }
+    );
+    
   }
 
   let content = (
@@ -36,8 +52,14 @@ export default function App() {
   )
 
   if (todoId) {
-    const selectedTodo = todos.find(todo => todo.id === todoId)
-    content = <TodoScreen todo={selectedTodo} goBack={() => setTodoId(null)} />
+    const selectedTodo = todos.find((todo) => todo.id === todoId)
+    content = (
+      <TodoScreen
+        todo={selectedTodo}
+        goBack={() => setTodoId(null)}
+        onRemove={removeTodo}
+      />
+    )
   }
 
   return (
