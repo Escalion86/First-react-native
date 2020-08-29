@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet, TextInput, Button, Modal, Alert } from 'react-native'
 import { THEME } from '../theme'
 
@@ -7,7 +7,12 @@ export const EditModal = ({ visible, onCancel, value, onSave }) => {
 
   const saveHandler = () => {
     if (title.trim().length < 3) {
-      Alert.alert('Ошибка!', `Минимальная длинна названия 3 символа. Сейчас ${title.trim().length} символов.`)
+      Alert.alert(
+        'Ошибка!',
+        `Минимальная длинна названия 3 символа. Сейчас ${
+          title.trim().length
+        } символов.`
+      )
     } else {
       onSave(title)
     }

@@ -8,7 +8,7 @@ import { TodoScreen } from './src/screens/TodoScreen'
 export default function App() {
   const [todoId, setTodoId] = useState(null)
   const [todos, setTodos] = useState([
-    { id: '1', title: 'Выучить React Native' }
+    { id: '1', title: 'Выучить React Native' },
   ])
 
   const addTodo = (title) => {
@@ -22,32 +22,36 @@ export default function App() {
   }
 
   const removeTodo = (id) => {
-    const todo = todos.find(t => t.id === id)
+    const todo = todos.find((t) => t.id === id)
     Alert.alert(
       'Удаление элемента',
       `Вы уверены что хотите удалить "${todo.title}"?`,
       [
         {
           text: 'Отмена',
-          style: 'cancel'
+          style: 'cancel',
         },
-        { text: 'Удалить', onPress: () => {
-          setTodoId(null)
-          setTodos((prev) => prev.filter((todo) => todo.id !== id))
-        } }
+        {
+          text: 'Удалить',
+          onPress: () => {
+            setTodoId(null)
+            setTodos((prev) => prev.filter((todo) => todo.id !== id))
+          },
+        },
       ],
       { cancelable: false }
-    );
-    
+    )
   }
 
   const updateTodo = (id, title) => {
-    setTodos(old => old.map(todo => {
-      if (todo.id === id) {
-        todo.title = title
-      }
-      return todo
-    }))
+    setTodos((old) =>
+      old.map((todo) => {
+        if (todo.id === id) {
+          todo.title = title
+        }
+        return todo
+      })
+    )
   }
 
   let content = (
