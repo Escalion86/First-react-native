@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, Button } from 'react-native'
+import { StyleSheet, View, Button, Dimensions } from 'react-native'
 import { FontAwesome, AntDesign } from '@expo/vector-icons'
 import { THEME } from '../theme'
 import { AppCard } from '../components/ui/AppCard'
@@ -27,14 +27,14 @@ export const TodoScreen = ({ goBack, todo, onRemove, onSave }) => {
       <AppCard style={styles.card}>
         <AppTextBold style={styles.title}>{todo.title}</AppTextBold>
         <AppButton onPress={() => setModal(true)}>
-          <FontAwesome name='edit' size={20} />
+          <FontAwesome name="edit" size={20} />
         </AppButton>
       </AppCard>
 
       <View style={styles.buttons}>
         <View style={styles.button}>
           <AppButton onPress={goBack} color={THEME.GRAY_COLOR}>
-            <AntDesign name='back' size={20} color='#fff' />
+            <AntDesign name="back" size={20} color="#fff" />
           </AppButton>
         </View>
         <View style={styles.button}>
@@ -42,7 +42,7 @@ export const TodoScreen = ({ goBack, todo, onRemove, onSave }) => {
             color={THEME.DANGER_COLOR}
             onPress={() => onRemove(todo.id)}
           >
-            <FontAwesome name='remove' size={20} color='#fff' />
+            <FontAwesome name="remove" size={20} color="#fff" />
           </AppButton>
         </View>
       </View>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   button: {
-    width: '45%',
+    width: Dimensions.get('window').width / 3
   },
   title: {
     fontSize: 20,
