@@ -11,16 +11,16 @@ export const MainScreen = ({ addTodo, todos, removeTodo, openTodo }) => {
 
   useEffect(() => {
     const update = () => {
-      const width = Dimensions.get('window').width - THEME.PADDING_HORIZONTAL * 2
+      const width =
+        Dimensions.get('window').width - THEME.PADDING_HORIZONTAL * 2
       setDeviceWidth(width)
     }
     Dimensions.addEventListener('change', update)
-    
+
     return () => {
       Dimensions.removeEventListener('change', update)
     }
   })
-  
 
   let content = (
     <View style={{ width: deviceWidth }}>

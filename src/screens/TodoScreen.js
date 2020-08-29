@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   button: {
-    width: Dimensions.get('window').width / 3
+    width: Dimensions.get('window').width / 3,
   },
   title: {
     fontSize: 20,

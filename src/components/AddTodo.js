@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, TextInput, Button, Alert, Keyboard } from 'react-native'
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  Button,
+  Alert,
+  Keyboard,
+} from 'react-native'
 import { THEME } from '../theme'
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons'
 
 export const AddTodo = ({ onSubmit }) => {
   const [value, setValue] = useState('')
