@@ -24,10 +24,10 @@ const handlers = {
       return todo
     }),
   }),
-  DEFAULT: state => state
+  DEFAULT: (state) => state,
 }
 
 export const todoReducer = (state, action) => {
   const handler = handlers[action.type] || handlers.DEFAULT
-  return handler(state,action)
+  return handler(state, action)
 }
