@@ -2,7 +2,16 @@ import React, { useReducer, useContext } from 'react'
 import { Alert } from 'react-native'
 import { TodoContext } from './todoContext'
 import { todoReducer } from './todoReducer'
-import { ADD_TODO, REMOVE_TODO, UPDATE_TODO, SHOW_LOADER, SHOW_ERROR, CLEAR_ERROR, FETCH_TODOS } from '../types'
+import {
+  ADD_TODO,
+  REMOVE_TODO,
+  UPDATE_TODO,
+  SHOW_LOADER,
+  HIDE_LOADER,
+  SHOW_ERROR,
+  CLEAR_ERROR,
+  FETCH_TODOS,
+} from '../types'
 import { ScreenContext } from '../screen/screenContext'
 
 export const TodoState = ({ children }) => {
@@ -15,11 +24,14 @@ export const TodoState = ({ children }) => {
   const [state, dispatch] = useReducer(todoReducer, initialState)
 
   const addTodo = async (title) => {
-    const response = await fetch('https://react-native-todoapp-baccf.firebaseio.com/todos.json', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ title })
-    })
+    const response = await fetch(
+      'https://react-native-todoapp-baccf.firebaseio.com/todos.json',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title }),
+      }
+    )
     const data = await response.json()
     console.log('ID', data.name)
 
@@ -49,14 +61,19 @@ export const TodoState = ({ children }) => {
   }
 
   const fetchTodos = async () => {
-    const response = await fetch('https://react-native-todoapp-baccf.firebaseio.com/todos.json', {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json'}
-    })
+    showLoader()
+    const response = await fetch(
+      'https://react-native-todoapp-baccf.firebaseio.com/todos.json',
+      {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      }
+    )
     const data = await response.json()
-    console.log('Fetch data', data)
-    const todos = Object.keys(data).map(key => ({ ...data[key], id: key }))
-    dispatch({type: FETCH_TODOS, todos})
+    // console.log('Fetch data', data)
+    const todos = Object.keys(data).map((key) => ({ ...data[key], id: key }))
+    dispatch({ type: FETCH_TODOS, todos })
+    hideLoader()
   }
 
   const updateTodo = (id, title) => dispatch({ type: UPDATE_TODO, id, title })
@@ -65,9 +82,9 @@ export const TodoState = ({ children }) => {
 
   const hideLoader = () => dispatch({ type: HIDE_LOADER })
 
-  const showError = error => dispatch({type: SHOW_ERROR, error})
+  const showError = (error) => dispatch({ type: SHOW_ERROR, error })
 
-  const clearError = () => dispatch({type: CLEAR_ERROR})
+  const clearError = () => dispatch({ type: CLEAR_ERROR })
 
   return (
     <TodoContext.Provider
@@ -78,7 +95,7 @@ export const TodoState = ({ children }) => {
         addTodo,
         removeTodo,
         updateTodo,
-        fetchTodos
+        fetchTodos,
       }}
     >
       {children}
