@@ -8,7 +8,9 @@ import { ScreenContext } from '../context/screen/screenContext'
 import { AppLoader } from '../components/ui/AppLoader'
 
 export const MainScreen = () => {
-  const { addTodo, todos, removeTodo, fetchTodos, loading, error } = useContext(TodoContext)
+  const { addTodo, todos, removeTodo, fetchTodos, loading, error } = useContext(
+    TodoContext
+  )
   const { changeScreen } = useContext(ScreenContext)
   const [deviceWidth, setDeviceWidth] = useState(
     Dimensions.get('window').width - THEME.PADDING_HORIZONTAL * 2

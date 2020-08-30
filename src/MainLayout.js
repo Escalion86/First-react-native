@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: THEME.PADDING_HORIZONTAL,
     paddingVertical: 20,
-    flex: 1
+    flex: 1,
   },
   wrapper: {
-    flex: 1
-  }
+    flex: 1,
+  },
 })
