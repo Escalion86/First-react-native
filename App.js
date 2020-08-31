@@ -6,6 +6,7 @@ import { AppLoading } from 'expo'
 import { MainLayout } from './src/MainLayout'
 import { TodoState } from './src/context/todo/TodoState'
 import { ScreenState } from './src/context/screen/ScreenState'
+import { StatusBar } from 'expo-status-bar'
 
 async function loadApplication() {
   await Font.loadAsync({
@@ -31,6 +32,7 @@ export default function App() {
     <ScreenState>
       <TodoState>
         <MainLayout />
+        <StatusBar style="light" />
       </TodoState>
     </ScreenState>
   )

@@ -1,14 +1,17 @@
 {
   "expo": {
-    "name": "first-react-native",
-    "slug": "first-react-native",
-    "version": "1.0.0",
+    "name": "Todo App",
+    "slug": "react-native-todo-app",
+    "version": "0.1.0",
     "orientation": "default",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/rn-icon.png",
+    "privacy": "public",
+    "platforms": ["android"],
+    "githubUrl": "https://github.com/Escalion86/Todo-App",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/rn-splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#3949ab"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
