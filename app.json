@@ -22,6 +22,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "android": {
+      "package": "com.escalion.todo_app",
+      "versionCode": 1,
+      "permissions": []
     }
   }
 }
